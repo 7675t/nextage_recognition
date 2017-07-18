@@ -1,0 +1,14 @@
+<launch>
+  <arg name="match_method" default="5"/>
+  <arg name="use_camera_info" default="true"/>
+  <arg name="with_rviz" default="true"/>
+  
+  <node name="match_template" pkg="opencv_apps" type="match_template" output="screen">
+    <remap from="image" to="camera/image_raw" />
+    <param name="match_method" value="$(arg match_method)"/>
+    <param name="use_camera_info" value="$(arg use_camera_info)" />
+    <param name="debug_view" value="true" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nextage_recognition)/config/match_template.rviz"/>
+</launch>

@@ -1,0 +1,28 @@
+<launch>
+  <arg name="match_method" default="5"/>
+  <arg name="image_dir" default="$(find nextage_recognition)/image"/>
+  <arg name="scene_image" default="scene-1.png"/>
+  <arg name="template_image" default="template-1.png"/>
+
+  <node name="scene_image_publisher" pkg="jsk_perception" type="image_publisher.py">
+    <param name="encoding" value="mono8"/>
+    <param name="publish_info" value="false"/>
+    <param name="file_name" value="$(arg image_dir)/$(arg scene_image)"/>
+  </node>
+
+  <node name="template_image_publisher" pkg="jsk_perception" type="image_publisher.py">
+    <param name="encoding" value="mono8"/>
+    <param name="publish_info" value="false"/>
+    <param name="file_name" value="$(arg image_dir)/$(arg template_image)"/>
+  </node>
+
+  <!-- match_template_nodelet.cpp -->
+  <node name="match_template" pkg="opencv_apps" type="match_template" output="screen">
+    <remap from="image" to="scene_image_publisher/output" />
+    <remap from="template" to="template_image_publisher/output" />
+
+    <param name="match_method" value="$(arg match_method)"/>
+    <param name="use_camera_info" value="false" />
+    <param name="debug_view" value="true" />
+  </node>
+</launch>

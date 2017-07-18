@@ -1,0 +1,12 @@
+<launch>
+  <arg name="with_rviz" default="true"/>
+
+  <include file="$(find nextage_recognition)/launch/match_template_with_camera.launch">
+    <arg name="with_rviz" value="$(arg with_rviz)"/>
+  </include>
+  
+  <node name="gaze_plane_projector" pkg="gaze_projector" type="gaze_plane_projector.py" output="screen">
+    <remap from="gaze_vector" to="match_template/gaze_vector"/>
+  </node>
+  
+</launch>
