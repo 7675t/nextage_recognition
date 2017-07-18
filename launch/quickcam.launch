@@ -21,6 +21,8 @@
     <param name="auto_white_balance" value="false"/>
   </node>
 
+  <node ns="camera" name="image_proc" pkg="image_proc" type="image_proc" />
+
   <node name="camera_tf_publisher" pkg="tf" type="static_transform_publisher" args="0 0 0.3 -1.57 0 $(arg camera_tilt_angle) map camera 100"/>
 
 </launch>
