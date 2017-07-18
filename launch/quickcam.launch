@@ -1,7 +1,7 @@
 <launch>
   <arg name="camera_tilt_angle" default="-2.0"/>
-  <arg name="width" default="800"/>
-  <arg name="height" default="600"/>
+  <arg name="width" default="1600"/>
+  <arg name="height" default="1200"/>
 
   <node ns="camera" name="quickcam_node" pkg="libuvc_camera" type="camera_node">
     <param name="vendor" value="0x046d"/>
