@@ -34,7 +34,7 @@ You need to specify the template image. Drag the rectangular region in 'Scene Im
 
 You can get the template postition in the image as:
 ```
-$ rostopic echo match_template/pixel_
+$ rostopic echo match_template/pixel_position
 ```
 
 ## Locate 3D position using a plane constraint
